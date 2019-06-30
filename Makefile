@@ -1,5 +1,5 @@
 nn:	Main.cpp
-	g++ Main.cpp -o sim -lsfml-graphics -lsfml-window -lsfml-system
+	g++ Main.cpp Agent.cpp -o sim -lsfml-graphics -lsfml-window -lsfml-system
 
 run:	sim	
 	./sim
