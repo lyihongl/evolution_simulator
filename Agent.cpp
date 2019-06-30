@@ -2,7 +2,8 @@
 
 Agent::Agent()
 {
-
+	shape.setRadius(100.f);
+	shape.setFillColor(sf::Color::Green);
 }
 
 Agent::~Agent()
@@ -22,5 +23,5 @@ Agent* Agent::reproduce()
 
 void Agent::render(sf::RenderWindow* window)
 {
-
+	window->draw(shape);
 }

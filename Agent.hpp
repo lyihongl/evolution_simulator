@@ -10,7 +10,6 @@ class Agent
 		Agent* reproduce();
 		void render(sf::RenderWindow* window);
 
-
 	private:
 		double* weights;
 		double* bias;
@@ -18,6 +17,7 @@ class Agent
 		int max_speed;
 		int repop_energy;
 		double* (*gene_func_list)(double, double, double);
+		sf::CircleShape shape;
 
 };
 #endif
