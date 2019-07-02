@@ -6,11 +6,18 @@
 using std::cout;
 using std::endl;
 
+//tasks:
+/*
+	- agent constructor
+	- define vision
+	- start defining gene functions
+*/
+
 int main(int argc, char** argv)
 {
 
 	//create window
-	sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works");
+	sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
@@ -20,6 +27,13 @@ int main(int argc, char** argv)
 
 	auto start = Time::now();
 	auto end = Time::now();
+
+	sf::Image window_pixels;
+	sf::Vector2u window_size = window.getSize();
+	sf::Texture window_texture;
+	window_texture.create(window_size.x, window_size.y);
+
+	Agent a(0, 0);
 
 	//main loop
 	while(window.isOpen())
@@ -41,11 +55,20 @@ int main(int argc, char** argv)
 		{
 			//update start time after each tick
 			start = Time::now();
+			window.clear();
+			a.render(&window);
+			//=============================
+			a.update();
+			window_texture.update(window);
+			window_pixels = window_texture.copyToImage();
+			a.vision(window_pixels);
+			cout<<(int)(window_pixels.getPixel(20, 10).g)<<endl;
+			//=============================
+			window.display();
+
 		}
 
-		window.clear();
-		window.draw(shape);
-		window.display();
+		//window.draw(shape);
 	}
 	return 0;
 }
