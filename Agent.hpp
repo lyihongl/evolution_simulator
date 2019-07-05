@@ -29,6 +29,6 @@ class Agent
 		double rotation;
 		t_agent type;
 		double v_vector[2];
-		std::vector<double[2]> p_list;
+		std::vector<double*> p_list;
 };
 #endif

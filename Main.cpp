@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 	sf::Texture window_texture;
 	window_texture.create(window_size.x, window_size.y);
 
-	Agent a(0, 0);
+	Agent a(0, 0, 15, t_agent::PRED);
 
 	//main loop
 	while(window.isOpen())
@@ -64,7 +64,7 @@ int main(int argc, char** argv)
 			window_texture.update(window);
 			window_pixels = window_texture.copyToImage();
 			a.vision(window_pixels);
-			cout<<(int)(window_pixels.getPixel(20, 10).g)<<endl;
+			//cout<<(int)(window_pixels.getPixel(20, 10).g)<<endl;
 			//=============================
 			window.display();
 

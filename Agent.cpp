@@ -70,7 +70,10 @@ void Agent::vision(sf::Image &screen)
 	{
 		for(int j = r_bounds[0]; j<r_bounds[1]; j++)
 		{
-			p_list.push_back({j*std::cos(i), j*std::sin(i)});
+			double *node = new double[2];
+			node[0] = j*std::cos(i);
+			node[1] = j*std::sin(i);
+			p_list.push_back(node);
 		}
 	}
 }
