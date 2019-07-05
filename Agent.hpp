@@ -1,6 +1,7 @@
 #ifndef AGENT
 #define AGENT
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 enum t_agent {PRED, PREY};
 class Agent
@@ -28,5 +29,6 @@ class Agent
 		double rotation;
 		t_agent type;
 		double v_vector[2];
+		std::vector<double[2]> p_list;
 };
 #endif

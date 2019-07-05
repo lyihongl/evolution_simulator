@@ -66,4 +66,11 @@ void Agent::vision(sf::Image &screen)
 		//std::cout<<(int)(screen.getPixel(x+8, 8).g)<<std::endl;;
 	double theta_bounds[2] = {rotation - v_vector[1], rotation+v_vector[1]};
 	double r_bounds[2] = {r, r+v_vector[0]};
+	for(int i = theta_bounds[0]; i<theta_bounds[1]; i++)
+	{
+		for(int j = r_bounds[0]; j<r_bounds[1]; j++)
+		{
+			p_list.push_back({j*std::cos(i), j*std::sin(i)});
+		}
+	}
 }
