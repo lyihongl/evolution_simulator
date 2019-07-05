@@ -3,14 +3,27 @@
 #include <cmath>
 //#include <Texture.hpp>
 
-Agent::Agent(int x, int y, t_agent type)
+Agent::Agent(int x, int y, int r, t_agent type)
 {
-	shape.setRadius(15.f);
+	shape.setRadius(r);
 	shape.setFillColor(sf::Color::Green);
 	Agent::x = x;
 	Agent::y = y;
 	shape.setPosition(x, y);
+	Agent::r = r;
 	Agent::type = type;
+
+	if(type = t_agent::PRED)
+	{
+		v_vector[0] = 4;
+		v_vector[1] = M_PI/3;
+	}
+	else
+	{
+		v_vector[0] = 2;
+		v_vector[1] = M_PI;
+	}
+	
 	//shape.
 }
 
@@ -49,6 +62,8 @@ void Agent::update()
 
 void Agent::vision(sf::Image &screen)
 {
-	if(x>0)
-		std::cout<<(int)(screen.getPixel(x+8, 8).g)<<std::endl;;
+	//if(x>0)
+		//std::cout<<(int)(screen.getPixel(x+8, 8).g)<<std::endl;;
+	double theta_bounds[2] = {rotation - v_vector[1], rotation+v_vector[1]};
+	double r_bounds[2] = {r, r+v_vector[0]};
 }

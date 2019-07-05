@@ -1,3 +1,5 @@
+#ifndef VISION
+#define VISION
 class Vision
 {
 	public:
@@ -6,3 +8,4 @@ class Vision
 	private:
 
 };
+#endif

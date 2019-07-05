@@ -8,9 +8,10 @@ using std::endl;
 
 //tasks:
 /*
-	- agent types
-	- agent constructor
 	- define vision
+		- in circular coordinates, then transformed to cartisean
+		- Vision input will be the integral of vision
+		- vision bounded from (rotation + fov)(rotation - fov), (r0)(r0+r)
 	- start defining gene functions
 */
 

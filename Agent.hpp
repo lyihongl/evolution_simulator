@@ -6,7 +6,7 @@ enum t_agent {PRED, PREY};
 class Agent
 {
 	public:
-		Agent(int x, int y, t_agent type);
+		Agent(int x, int y, int r, t_agent type);
 		~Agent();
 		double gene_function(double input, double weight, double bias);
 		Agent* reproduce();
@@ -16,7 +16,7 @@ class Agent
 		
 
 	private:
-		int x, y;
+		int x, y, r;
 		double* weights;
 		double* bias;
 		int energy;
@@ -27,5 +27,6 @@ class Agent
 		double* input_array;
 		double rotation;
 		t_agent type;
+		double v_vector[2];
 };
 #endif
