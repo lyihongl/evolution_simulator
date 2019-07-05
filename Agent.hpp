@@ -13,7 +13,7 @@ class Agent
 		Agent* reproduce();
 		void render(sf::RenderWindow* window);
 		void update();
-		void vision(sf::Image &screen);
+		void vision(sf::Image &screen, sf::RenderWindow* window);
 		
 
 	private:
@@ -29,6 +29,7 @@ class Agent
 		double rotation;
 		t_agent type;
 		double v_vector[2];
-		std::vector<double*> p_list;
+		double** p_list;
+		//std::vector<double*> p_list;
 };
 #endif
