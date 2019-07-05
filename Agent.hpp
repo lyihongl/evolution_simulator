@@ -1,10 +1,12 @@
 #ifndef AGENT
 #define AGENT
 #include <SFML/Graphics.hpp>
+
+enum t_agent {PRED, PREY};
 class Agent
 {
 	public:
-		Agent(int x, int y);
+		Agent(int x, int y, t_agent type);
 		~Agent();
 		double gene_function(double input, double weight, double bias);
 		Agent* reproduce();
@@ -24,6 +26,6 @@ class Agent
 		sf::CircleShape shape;
 		double* input_array;
 		double rotation;
-
+		t_agent type;
 };
 #endif

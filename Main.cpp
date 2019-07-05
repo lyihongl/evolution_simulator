@@ -8,6 +8,7 @@ using std::endl;
 
 //tasks:
 /*
+	- agent types
 	- agent constructor
 	- define vision
 	- start defining gene functions

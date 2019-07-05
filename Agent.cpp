@@ -3,13 +3,14 @@
 #include <cmath>
 //#include <Texture.hpp>
 
-Agent::Agent(int x, int y)
+Agent::Agent(int x, int y, t_agent type)
 {
 	shape.setRadius(15.f);
 	shape.setFillColor(sf::Color::Green);
 	Agent::x = x;
 	Agent::y = y;
 	shape.setPosition(x, y);
+	Agent::type = type;
 	//shape.
 }
 
