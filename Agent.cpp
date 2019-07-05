@@ -92,13 +92,13 @@ void Agent::vision(sf::Image &screen, sf::RenderWindow* window)
 		for(double j = theta_bounds[0]; j<theta_bounds[1]; j+=0.15)
 		{
 			//k++;
-			i = -i;
+			//i = -i;
 			sf::RectangleShape* shape = new sf::RectangleShape(sf::Vector2f(1, 1));
 			//std::cout<<"x: "<<x<<" y: "<<y<<std::endl;
-			double dist = std::pow(std::pow(i*std::cos(j), 2)+std::pow(i*std::sin(j), 2),0.5);
+			//double dist = std::pow(std::pow(-i*std::cos(j), 2)+std::pow(-i*std::sin(j), 2),0.5);
 			//std::cout<<"dist: "<<dist<<std::endl;
 			//std::cout<<"position: "<<i*std::cos(j)+x<<" "<<i*std::sin(j)+y<<std::endl;
-			shape->setPosition(sf::Vector2f(i*std::cos(j)+x+r, i*std::sin(j)+y+r));
+			shape->setPosition(sf::Vector2f(-i*std::cos(j)+x+r, -i*std::sin(j)+y+r));
 			//std::cout<<0xffffff-screen.getPixel(i*std::cos(j)+x, i*std::sin(j)+y).toInteger()<<std::endl;
 			shape->setFillColor(sf::Color::Red);
 			window -> draw(*shape);
@@ -113,7 +113,7 @@ void Agent::vision(sf::Image &screen, sf::RenderWindow* window)
 			shape = nullptr;
 		}
 	}
-	std::cout<<"k: "<<k<<std::endl;
+	//std::cout<<"k: "<<k<<std::endl;
 	//for(auto i :p_list)
 	//{
 	//	delete[] i;
