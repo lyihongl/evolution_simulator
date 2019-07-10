@@ -2,6 +2,7 @@
 #define AGENT
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "Point.hpp"
 
 enum t_agent {PRED, PREY};
 class Agent
@@ -18,18 +19,19 @@ class Agent
 
 	private:
 		int x, y, r;
-		double* weights;
-		double* bias;
-		int energy;
-		int max_speed;
-		int repop_energy;
 		double* (*gene_func_list)(double, double, double);
 		sf::CircleShape shape;
-		double* input_array;
 		double rotation;
 		t_agent type;
 		double v_vector[2];
-		double** p_list;
-		//std::vector<double*> p_list;
+		struct point<int> constraints[4];
+
+		//not yet used
+		int energy;
+		int max_speed;
+		int repop_energy;
+		double* input_array;
+		double* weights;
+		double* bias;
 };
 #endif
