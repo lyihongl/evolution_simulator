@@ -94,6 +94,25 @@ void Agent::update()
 	shape.setPosition(x, y);
 }
 
-void Agent::vision(sf::Image &screen, sf::RenderWindow* window)
+void Agent::vision(sf::Image &screen, sf::RenderWindow * window)
 {
+
+	//transformed x y
+	sf::RectangleShape* temp;
+	int t_x = 0, t_y = 0;
+	for(int i = -vx_left; i<vx_right; i++)
+	{
+		for(int j = -vy_top; j<0; j++)
+		{
+			t_x = (int)(x+r+i*rotation_matrix[1] - j*rotation_matrix[0]);
+			t_y = (int)(y+r+i*rotation_matrix[0]+j*rotation_matrix[1]);
+
+			temp = new sf::RectangleShape(sf::Vector2f(1, 1));
+			temp->setPosition(sf::Vector2f(t_x, t_y));
+			temp->setFillColor(sf::Color::Red);
+			window->draw(*temp);
+			delete temp;
+			temp = nullptr;
+		}
+	}
 }
