@@ -5,6 +5,16 @@
 #include "Point.hpp"
 
 enum t_agent {PRED, PREY};
+
+//template <typename T>
+//struct Indexed_array
+//{
+	//unsigned int size;
+	//T * list;
+//};
+
+//template <typename T>
+
 class Agent
 {
 	public:
@@ -21,6 +31,9 @@ class Agent
 
 		//x, y and radius. Note that x and y are measured from the top left corner of the shape
 		int x, y, r;
+		
+		//list of all pixel values in the vision zone
+		std::vector<int> pixel_list;
 
 		double gene_func(int input);
 		sf::CircleShape shape;

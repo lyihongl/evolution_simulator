@@ -58,13 +58,13 @@ int main(int argc, char** argv)
 			//update start time after each tick
 			start = Time::now();
 			window.clear();
-			//a.render(&window);
+			a.render(&window);
 			//=============================
 			a.update();
 			window_texture.update(window);
 			window_pixels = window_texture.copyToImage();
 			//a.vision(window_pixels, &window);
-			a.vision(window_pixels, &window);
+			//a.vision(window_pixels, &window);
 			//cout<<(int)(window_pixels.getPixel(20, 10).g)<<endl;
 			//=============================
 			window.display();

@@ -15,22 +15,25 @@ Agent::Agent(int x, int y, int r, t_agent type)
 
 	if(type == t_agent::PRED)
 	{
-		vision_vector[0] = 2*r;
+		vision_vector[0] = 4*r;
 		vision_vector[1] = M_PI/4;
 	}
 	else
 	{
-		vision_vector[0] = 2;
+		vision_vector[0] = 2*r;
 		vision_vector[1] = M_PI;
 	}
 	//rotation_matrix[0] = 0;
 
 	//since the angle is measured with respect to y axis, the x displacement is actually rsin(theta), same goes for y displacement
-	vx_left = (vision_vector[0]+r)*sin(vision_vector[1]);
-	vx_right = (vision_vector[0]+r)*sin(vision_vector[1]);
-	vy_top = r+vision_vector[0]*cos(rotation);
+	double v_rad = vision_vector[1] < M_PI/2 ? vision_vector[1] : M_PI/2;
+	vx_left = (vision_vector[0]+r)*sin(v_rad);
+	vx_right = (vision_vector[0]+r)*sin(v_rad);
+	vy_top = r+vision_vector[0];
 	std::cout<<vy_top<<std::endl;
-	vy_bottom = r;
+	vy_bottom = r-vision_vector[0]*cos(vision_vector[1]);
+	vy_bottom = vy_bottom > 0 ? vy_bottom : 0;
+	std::cout<<"vy: "<<vy_bottom<<std::endl;
 
 	
 	
@@ -59,7 +62,7 @@ void Agent::render(sf::RenderWindow* window)
 	sf::RectangleShape* temp;
 	for(int i = -vx_left; i<vx_right; i++)
 	{
-		for(int j = -vy_top; j<0; j++)
+		for(int j = -vy_top; j<vy_bottom; j++)
 		{
 			temp = new sf::RectangleShape(sf::Vector2f(1, 1));
 			temp->setPosition(sf::Vector2f((x+r)+(i*rotation_matrix[1]-j*rotation_matrix[0]), y+r+i*rotation_matrix[0]+j*rotation_matrix[1]));
@@ -98,21 +101,16 @@ void Agent::vision(sf::Image &screen, sf::RenderWindow * window)
 {
 
 	//transformed x y
-	sf::RectangleShape* temp;
 	int t_x = 0, t_y = 0;
+
 	for(int i = -vx_left; i<vx_right; i++)
 	{
 		for(int j = -vy_top; j<0; j++)
 		{
 			t_x = (int)(x+r+i*rotation_matrix[1] - j*rotation_matrix[0]);
 			t_y = (int)(y+r+i*rotation_matrix[0]+j*rotation_matrix[1]);
-
-			temp = new sf::RectangleShape(sf::Vector2f(1, 1));
-			temp->setPosition(sf::Vector2f(t_x, t_y));
-			temp->setFillColor(sf::Color::Red);
-			window->draw(*temp);
-			delete temp;
-			temp = nullptr;
+			pixel_list.push_back(screen.getPixel(t_x, t_y).toInteger());
 		}
 	}
+	//return points_list;
 }

@@ -1,9 +1,13 @@
 #ifndef POINT
 #define POINT
 template <typename T>
-struct point
+class c_Point
 {
-	T x;
-	T y;
+	public:
+		c_Point(T x, T y);
+		~c_Point();
+		//int get_size();
+	private:
+		//int size;
 };
 #endif
