@@ -34,8 +34,6 @@ Agent::Agent(int x, int y, int r, t_agent type)
 	vy_bottom = r-vision_vector[0]*cos(vision_vector[1]);
 	vy_bottom = vy_bottom > 0 ? vy_bottom : 0;
 	//std::cout<<"vy: "<<vy_bottom<<std::endl;
-
-	
 	
 	Agent::rotation = 0;
 }
@@ -99,7 +97,6 @@ void Agent::update()
 
 void Agent::vision(sf::Image &screen, sf::RenderWindow * window)
 {
-
 	//transformed x y
 	int t_x = 0, t_y = 0;
 

@@ -1,0 +1,1 @@
+double* generate_weight(int size);
