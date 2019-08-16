@@ -33,7 +33,7 @@ Agent::Agent(int x, int y, int r, t_agent type)
 	std::cout<<vy_top<<std::endl;
 	vy_bottom = r-vision_vector[0]*cos(vision_vector[1]);
 	vy_bottom = vy_bottom > 0 ? vy_bottom : 0;
-	std::cout<<"vy: "<<vy_bottom<<std::endl;
+	//std::cout<<"vy: "<<vy_bottom<<std::endl;
 
 	
 	
@@ -109,7 +109,7 @@ void Agent::vision(sf::Image &screen, sf::RenderWindow * window)
 		{
 			t_x = (int)(x+r+i*rotation_matrix[1] - j*rotation_matrix[0]);
 			t_y = (int)(y+r+i*rotation_matrix[0]+j*rotation_matrix[1]);
-			pixel_list.push_back(screen.getPixel(t_x, t_y).toInteger());
+			Agent::pixel_list.push_back(screen.getPixel(t_x, t_y).toInteger());
 		}
 	}
 	//return points_list;

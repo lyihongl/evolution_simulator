@@ -1,13 +1,18 @@
 #ifndef POINT
 #define POINT
-template <typename T>
+//template <typename T>
 class c_Point
 {
 	public:
-		c_Point(T x, T y);
+		c_Point(double x, double y);
 		~c_Point();
-		//int get_size();
+		double get_mag();
+		double get_unit_x();
+		double get_unit_y();
+		double get_x();
+		double get_y();
 	private:
-		//int size;
+		double x;
+		double y;
 };
 #endif

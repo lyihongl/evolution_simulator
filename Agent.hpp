@@ -25,6 +25,9 @@ class Agent
 		void render(sf::RenderWindow* window);
 		void update();
 		void vision(sf::Image &screen, sf::RenderWindow* window);
+		//requires movement direction, look rotation (list will expand in future) 
+		//movement direction and magnitude will be of type Point
+		void calculate_moves(c_Point p, double rotation);
 		
 
 	private:
@@ -54,8 +57,6 @@ class Agent
 		
 		//test code
 		double rotation_matrix[2] = {0};
-		//sf::VertexArray v_box(sf::Lines, 4);
-		//sf::Vertex v_box[4];
 
 		//not yet used
 		int energy;
