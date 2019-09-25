@@ -28,12 +28,13 @@ class Agent
 		//requires movement direction, look rotation (list will expand in future) 
 		//movement direction and magnitude will be of type Point
 		void calculate_moves(c_Point p, double rotation);
+		int get_matrix_size();
 		
 
 	private:
 
 		//x, y and radius. Note that x and y are measured from the top left corner of the shape
-		int x, y, r;
+		int x, y, r, matrix_size;
 		
 		//list of all pixel values in the vision zone
 		std::vector<int> pixel_list;

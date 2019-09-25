@@ -26,14 +26,19 @@ Agent::Agent(int x, int y, int r, t_agent type)
 	//rotation_matrix[0] = 0;
 
 	//since the angle is measured with respect to y axis, the x displacement is actually rsin(theta), same goes for y displacement
+	
 	double v_rad = vision_vector[1] < M_PI/2 ? vision_vector[1] : M_PI/2;
+
 	vx_left = (vision_vector[0]+r)*sin(v_rad);
 	vx_right = (vision_vector[0]+r)*sin(v_rad);
+
 	vy_top = r+vision_vector[0];
-	std::cout<<vy_top<<std::endl;
-	vy_bottom = r-vision_vector[0]*cos(vision_vector[1]);
-	vy_bottom = vy_bottom > 0 ? vy_bottom : 0;
-	//std::cout<<"vy: "<<vy_bottom<<std::endl;
+
+	//bottom of vision should always be 0, since this is relative to the centre of the agent
+	vy_bottom = 0;
+
+	matrix_size = (vx_left*2)*(vy_bottom);
+	std::cout<<"matrix size"<<matrix_size<<std::endl;
 	
 	Agent::rotation = 0;
 }
@@ -57,19 +62,19 @@ void Agent::render(sf::RenderWindow* window)
 	window->draw(shape);
 	//for(int i = x-vx)
 	//std::cout<<"bounds: "<<(x+r-vx_left)<<" "<<x+r
-	sf::RectangleShape* temp;
-	for(int i = -vx_left; i<vx_right; i++)
-	{
-		for(int j = -vy_top; j<vy_bottom; j++)
-		{
-			temp = new sf::RectangleShape(sf::Vector2f(1, 1));
-			temp->setPosition(sf::Vector2f((x+r)+(i*rotation_matrix[1]-j*rotation_matrix[0]), y+r+i*rotation_matrix[0]+j*rotation_matrix[1]));
-			temp->setFillColor(sf::Color::Red);
-			window->draw(*temp);
-			delete temp;
-			temp = nullptr;
-		}
-	}
+	//sf::RectangleShape* temp;
+	//for(int i = -vx_left; i<vx_right; i++)
+	//{
+	//	for(int j = -vy_top; j<vy_bottom; j++)
+	//	{
+	//		//temp = new sf::RectangleShape(sf::Vector2f(1, 1));
+	//		//temp->setPosition(sf::Vector2f((x+r)+(i*rotation_matrix[1]-j*rotation_matrix[0]), y+r+i*rotation_matrix[0]+j*rotation_matrix[1]));
+	//		temp->setFillColor(sf::Color::Red);
+	//		window->draw(*temp);
+	//		delete temp;
+	//		temp = nullptr;
+	//	}
+	//}
 	//v_box[0].position = sf::Vector2f(x-vx_left, y-vy_top);
 	//v_box[1].position = sf::Vector2f(x-vx_left, y-vy_top);
 	//v_box[2].position = sf::Vector2f(x-vx_left, y-vy_top);
@@ -85,8 +90,8 @@ void Agent::render(sf::RenderWindow* window)
 
 void Agent::update()
 {
-	x++;
-	rotation+=0.1;
+	//x++;
+	//rotation+=0.1;
 	rotation_matrix[0] = sin(rotation);
 	rotation_matrix[1] = cos(rotation);
 	//vx_left = -(vision_vector[0]+r)*sin(vision_vector[1]+rotation);
@@ -99,6 +104,8 @@ void Agent::vision(sf::Image &screen, sf::RenderWindow * window)
 {
 	//transformed x y
 	int t_x = 0, t_y = 0;
+
+	std::cout<<"vx left: "<<vx_left<<std::endl;
 
 	for(int i = -vx_left; i<vx_right; i++)
 	{
